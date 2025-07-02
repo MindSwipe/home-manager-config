@@ -97,8 +97,4 @@ in
   modules.intellij = {
     enable = true;
   };
-
-  modules.zellij = {
-    enable = true;
-  };
 }
