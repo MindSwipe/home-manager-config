@@ -3,6 +3,7 @@
 let
   unfree = [
     "vscode"
+    "idea-ultimate"
   ];
 in
 {
@@ -91,5 +92,9 @@ in
   modules.vscode = {
     enable = true;
     nix.enable = true;
+  };
+
+  modules.intellij = {
+    enable = true;
   };
 }
