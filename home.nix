@@ -101,4 +101,8 @@ in
   modules.tmux = {
     enable = true;
   };
+
+  modules.fish = {
+    enable = true;
+  };
 }
