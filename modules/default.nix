@@ -1,0 +1,6 @@
+{ ... }:
+{
+  imports = [
+    ./vscode/vscode.nix
+  ];
+}
