@@ -97,4 +97,8 @@ in
   modules.intellij = {
     enable = true;
   };
+  
+  modules.tmux = {
+    enable = true;
+  };
 }
