@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nixgl, ... }:
 
 let
   unfree = [
@@ -88,6 +88,11 @@ in
   nixpkgs.config.allowUnfreePredicate = (pkg:
     builtins.elem (pkg.pname or (builtins.parseDrvName pkg.name).name) unfree
   );
+
+  nixGL = {
+    packages = nixgl.packages;
+    defaultWrapper = "mesa";
+  };
   
   modules.vscode = {
     enable = true;
@@ -103,6 +108,10 @@ in
   };
 
   modules.fish = {
+    enable = true;
+  };
+
+  modules.alacritty = {
     enable = true;
   };
 }

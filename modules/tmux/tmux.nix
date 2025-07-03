@@ -26,6 +26,7 @@
         set-environment -g COLORTERM "truecolor"
 
         set-option -g mouse on
+        set-option -g default-shell ${pkgs.fish}/bin/fish
       '';
     };
   };
