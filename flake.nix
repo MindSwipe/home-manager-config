@@ -25,9 +25,10 @@
           nixgl.overlay
         ];
       };
+      username = "fuju";
     in
     {
-      homeConfigurations."fuju" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         # Specify your home configuration modules here, for example,
@@ -37,7 +38,7 @@
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
         extraSpecialArgs = {
-          inherit nixgl;
+          inherit nixgl username;
         };
       };
     };

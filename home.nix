@@ -1,4 +1,4 @@
-{ config, pkgs, nixgl, ... }:
+{ config, pkgs, nixgl, username, ... }:
 
 let
   unfree = [
@@ -84,6 +84,21 @@ in
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  home.file.".ssh/allowed_signers".source = ./assets/allowed_signers;
+
+  programs.git = {
+    enable = true;
+    userName = "Juri Furer";
+    userEmail = "juri.furer@dvbern.ch";
+
+    extraConfig = {
+      commit.gpgsign = true;
+      gpg.format = "ssh";
+      gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+      user.signingkey = "~/.ssh/id_ed25519.pub";
+    };
+  };
   
   nixpkgs.config.allowUnfreePredicate = (pkg:
     builtins.elem (pkg.pname or (builtins.parseDrvName pkg.name).name) unfree
