@@ -15,6 +15,7 @@
       font-awesome
       nerd-fonts.ubuntu
       meslo-lgs-nf
+      fzf
     ];
 
     programs.fish = {
@@ -25,6 +26,7 @@
 
       plugins = [
         { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+        { name = "fzf"; src = pkgs.fishPlugins.fzf.src; }
       ];
     };
   };
