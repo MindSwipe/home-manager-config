@@ -129,4 +129,8 @@ in
   modules.alacritty = {
     enable = true;
   };
+
+  modules.devenv = {
+    enable = true;
+  };
 }

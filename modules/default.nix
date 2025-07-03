@@ -6,5 +6,6 @@
     ./tmux/tmux.nix
     ./fish/fish.nix
     ./alacritty/alacritty.nix
+    ./devenv/devenv.nix
   ];
 }
