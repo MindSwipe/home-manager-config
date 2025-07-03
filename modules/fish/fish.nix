@@ -22,6 +22,8 @@
       enable = true;
       interactiveShellInit = ''
         set fish_greeting
+        bind ctrl-h backward-kill-bigword
+        bind ctrl-delete kill-bigword
       '';
 
       plugins = [

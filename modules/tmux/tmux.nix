@@ -17,6 +17,7 @@
       plugins = with pkgs; [
         tmuxPlugins.tmux-floax
         tmuxPlugins.better-mouse-mode
+        tmuxPlugins.tmux-which-key
       ];
 
       extraConfig = ''
