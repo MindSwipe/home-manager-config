@@ -1,0 +1,25 @@
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  options.modules.vscode.js = {
+    enable = lib.mkEnableOption "JavaScript";
+  };
+
+  config = lib.mkIf config.modules.vscode.nix.enable {
+    home.packages = with pkgs; [
+      nodejs
+    ];
+
+    modules.vscode = {
+      additionalExtensions = with pkgs; [
+        vscode-extensions.esbenp.prettier-vscode
+        vscode-extensions.dbaeumer.vscode-eslint
+        vscode-extensions.bradlc.vscode-tailwindcss
+      ];
+    };
+  };
+}

@@ -7,6 +7,7 @@
 {
   imports = [
     ./nix/vscode-nix.nix
+    ./javascript/javascript.nix
   ];
 
   options.modules.vscode = {
