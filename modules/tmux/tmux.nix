@@ -28,6 +28,10 @@
 
         set-option -g mouse on
         set-option -g default-shell ${pkgs.fish}/bin/fish
+
+        set -g @plugin 'omerxx/tmux-floax'
+        set -g @plugin 'nhdaly/tmux-better-mouse-mode'
+        set -g @plugin 'alexwforsythe/tmux-which-key'
       '';
     };
   };
