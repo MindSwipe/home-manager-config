@@ -112,6 +112,7 @@ in
   modules.vscode = {
     enable = true;
     nix.enable = true;
+    js.enable = true;
   };
 
   modules.intellij = {

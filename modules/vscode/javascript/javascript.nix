@@ -9,7 +9,7 @@
     enable = lib.mkEnableOption "JavaScript";
   };
 
-  config = lib.mkIf config.modules.vscode.nix.enable {
+  config = lib.mkIf config.modules.vscode.js.enable {
     home.packages = with pkgs; [
       nodejs
     ];
