@@ -31,7 +31,10 @@
 
         set -g @plugin 'omerxx/tmux-floax'
         set -g @plugin 'nhdaly/tmux-better-mouse-mode'
-        set -g @plugin 'alexwforsythe/tmux-which-key'
+
+        # pane movement
+        bind-key j command-prompt -p "join pane from:"  "join-pane -s :'%%'"
+        bind-key s command-prompt -p "send pane to:"  "join-pane -t :'%%'"
       '';
     };
   };
