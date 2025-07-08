@@ -1,0 +1,28 @@
+#!/bin/bash
+PROJECT_PREFIX=$(git config get user.projectPrefix)
+
+if [ -z "${PROJECT_PREFIX}" ]; then
+    echo "git config user.projectPrefix must be set"
+    exit 1
+fi
+
+if [ -z "${1}" ]; then
+    echo "First argument must be set"
+    exit 1
+fi
+
+TARGET_BRANCH="feature/${PROJECT_PREFIX}-${1}"
+
+if [ `git rev-parse --verify $TARGET_BRANCH 2>/dev/null` ]; then
+    echo "$TARGET_BRANCH exists locally, switching"
+    git switch $TARGET_BRANCH
+    exit 0
+fi
+
+git ls-remote --exit-code --heads origin refs/heads/${TARGET_BRANCH}
+if [ $? -ne 0 ]; then
+    git switch --create $TARGET_BRANCH
+else
+    git fetch
+    git switch -c $TARGET_BRANCH origin/$TARGET_BRANCH
+fi

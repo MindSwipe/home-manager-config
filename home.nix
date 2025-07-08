@@ -117,6 +117,7 @@ in
 
   modules.intellij = {
     enable = true;
+    mvnd = false;
   };
   
   modules.tmux = {
@@ -132,6 +133,10 @@ in
   };
 
   modules.devenv = {
+    enable = true;
+  };
+
+  modules.gitCommands = {
     enable = true;
   };
 }

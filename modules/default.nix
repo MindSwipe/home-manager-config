@@ -7,5 +7,6 @@
     ./fish/fish.nix
     ./alacritty/alacritty.nix
     ./devenv/devenv.nix
+    ./gitCommands/gitCommands.nix
   ];
 }
