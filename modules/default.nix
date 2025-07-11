@@ -8,5 +8,6 @@
     ./alacritty/alacritty.nix
     ./devenv/devenv.nix
     ./gitCommands/gitCommands.nix
+    ./geany/geany.nix
   ];
 }

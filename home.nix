@@ -139,4 +139,8 @@ in
   modules.gitCommands = {
     enable = true;
   };
+
+  modules.geany = {
+    enable = true;
+  };
 }
