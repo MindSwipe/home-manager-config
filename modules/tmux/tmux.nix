@@ -35,6 +35,10 @@
         # pane movement
         bind-key j command-prompt -p "join pane from:"  "join-pane -s :'%%'"
         bind-key s command-prompt -p "send pane to:"  "join-pane -t :'%%'"
+
+        # override default splitting
+        bind-key '"' split-window -c "#{pane_current_path}
+        bind-key '%' split-window -h -c "#{pane_current_path}
       '';
     };
   };
