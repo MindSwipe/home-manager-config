@@ -143,4 +143,8 @@ in
   modules.geany = {
     enable = true;
   };
+
+  modules.bruno = {
+    enable = true;
+  };
 }
