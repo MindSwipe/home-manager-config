@@ -37,8 +37,8 @@
         bind-key s command-prompt -p "send pane to:"  "join-pane -t :'%%'"
 
         # override default splitting
-        bind-key '"' split-window -c "#{pane_current_path}
-        bind-key '%' split-window -h -c "#{pane_current_path}
+        bind-key '"' split-window -c "#{pane_current_path}"
+        bind-key '%' split-window -h -c "#{pane_current_path}"
 
         # Swap windows, this overrides the default "toggle layout"
         bind-key Space last-window
