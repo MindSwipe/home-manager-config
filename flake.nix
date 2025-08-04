@@ -12,10 +12,14 @@
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { nixpkgs, home-manager, nixgl, ... }:
+    { nixpkgs, home-manager, nixgl, nix-vscode-extensions, ... }:
     let
       system = "x86_64-linux";
       # pkgs = nixpkgs.legacyPackages.${system};
@@ -23,6 +27,7 @@
         inherit system;
         overlays = [
           nixgl.overlay
+          nix-vscode-extensions.overlays.default
         ];
       };
       username = "fuju";

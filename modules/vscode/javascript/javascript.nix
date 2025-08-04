@@ -19,6 +19,7 @@
         vscode-extensions.esbenp.prettier-vscode
         vscode-extensions.dbaeumer.vscode-eslint
         vscode-extensions.bradlc.vscode-tailwindcss
+        vscode-marketplace."42crunch".vscode-openapi
       ];
     };
   };
