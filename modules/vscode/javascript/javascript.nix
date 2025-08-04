@@ -22,6 +22,10 @@
         vscode-extensions.redhat.vscode-yaml
         vscode-marketplace."42crunch".vscode-openapi
       ];
+
+      additionalUserSettings = {
+        yaml.maxItemsComputed = 10000;
+      };
     };
   };
 }
