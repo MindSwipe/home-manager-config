@@ -147,4 +147,8 @@ in
   modules.bruno = {
     enable = true;
   };
+
+  modules.gpaste = {
+    enable = true;
+  };
 }

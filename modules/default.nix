@@ -10,5 +10,6 @@
     ./gitCommands/gitCommands.nix
     ./geany/geany.nix
     ./bruno/bruno.nix
+    ./gpaste/gpaste.nix
   ];
 }
