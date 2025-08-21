@@ -8,6 +8,7 @@
   imports = [
     ./nix/vscode-nix.nix
     ./javascript/javascript.nix
+    ./fish/fish.nix
   ];
 
   options.modules.vscode = {
