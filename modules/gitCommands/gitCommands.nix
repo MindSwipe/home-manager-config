@@ -14,5 +14,6 @@
     ];
 
     xdg.configFile."gitCommands/git-feature".source = ./assets/git-feature;
+    xdg.configFile."gitCommands/git-fc".source = ./assets/git-fc;
   };
 }

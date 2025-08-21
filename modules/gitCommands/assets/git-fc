@@ -1,0 +1,34 @@
+#!/usr/bin/env fish
+argparse 'm/message=' 'a/add' 'd/dry-run' -- $argv
+
+# Get message from the argument or use the first positional argument
+if set -ql _flag_m
+    set message $_flag_m
+else
+    set message $argv[1]
+end
+
+if not test -n "$message"
+    echo "message could not be set"
+    return 1
+end
+
+set current_branch (git rev-parse --abbrev-ref HEAD)
+string match -qr 'feature/(?<current>.*)' "$current_branch" -- $current
+
+if not test -n "$current"
+    echo "failed to parse current feature name, branch must be 'feature/...'"
+    return 1
+end
+
+set arguments ""
+
+if set -ql _flag_a
+    set arguments "-a $arguments"
+end
+
+if set -ql _flag_d
+    echo "dry run: git commit $arguments -m \"feat($current): $message\" $argv"
+else
+    git commit $arguments -m \"feat($current): $(message)\"
+end
