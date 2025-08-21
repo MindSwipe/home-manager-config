@@ -1,4 +1,6 @@
 #!/usr/bin/env fish
+# a script to generate conventional commit messages
+
 argparse 'm/message=' 'a/add' 'd/dry-run' -- $argv
 
 # Get message from the argument or use the first positional argument
@@ -13,22 +15,27 @@ if not test -n "$message"
     return 1
 end
 
+# Parse current branch, and set CC scope
 set current_branch (git rev-parse --abbrev-ref HEAD)
-string match -qr 'feature/(?<current>.*)' "$current_branch" -- $current
+string match -qr 'feature/(?<cc_scope>.*)' "$current_branch" -- $cc_scope
 
-if not test -n "$current"
-    echo "failed to parse current feature name, branch must be 'feature/...'"
-    return 1
-end
-
+# Parse and pass any known arguments
 set arguments ""
 
 if set -ql _flag_a
     set arguments "-a $arguments"
 end
 
+# TODO make this a param?
+set cc_type "feat"
+
+if test -n "$cc_scope"
+    set cc_type "$cc_type($cc_scope)" 
+end
+
+
 if set -ql _flag_d
-    echo "dry run: git commit $arguments -m \"feat($current): $message\" $argv"
+    echo "dry run: git commit $arguments -m \"$cc_type: $message\""
 else
-    git commit $arguments -m \"feat($current): $(message)\"
+    git commit $arguments -m \"$cc_type: $message\"
 end
