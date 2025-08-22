@@ -26,13 +26,14 @@ if set -ql _flag_a
     set arguments "-a $arguments"
 end
 
+set arguments (string trim -- $arguments)
+
 # TODO make this a param?
 set cc_type "feat"
 
 if test -n "$cc_scope"
     set cc_type "$cc_type($cc_scope)" 
 end
-
 
 if set -ql _flag_d
     echo "dry run: git commit $arguments -m \"$cc_type: $message\""
