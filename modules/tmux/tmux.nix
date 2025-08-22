@@ -45,6 +45,9 @@
 
         # Swap windows, this overrides the default "toggle layout"
         bind-key Space last-window
+
+        # start numbering windows at 1
+        set -g base-index 1
       '';
     };
   };
