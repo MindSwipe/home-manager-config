@@ -22,13 +22,11 @@ set current_branch (git rev-parse --abbrev-ref HEAD)
 string match -qr 'feature/(?<cc_scope>.*)' "$current_branch" -- $cc_scope
 
 # Parse and pass any known arguments
-set arguments ""
+set -l git_args
 
 if set -ql _flag_a
-    set arguments "-a $arguments"
+    set -a git_args "-a"
 end
-
-set arguments (string trim -- $arguments)
 
 # TODO make this a param?
 set cc_type "feat"
@@ -37,8 +35,10 @@ if test -n "$cc_scope"
     set cc_type "$cc_type($cc_scope)" 
 end
 
+set -a git_args -m (string join ": " $cc_type $message)
+
 if set -ql _flag_d
-    echo "dry run: git commit $arguments -m \"$cc_type: $message\""
+    echo "dry run: git commit $git_args"
 else
-    git commit $arguments -m (string join ": " $cc_type $message)
+    git commit $git_args
 end
