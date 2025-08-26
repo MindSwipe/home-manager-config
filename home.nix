@@ -152,4 +152,8 @@ in
   modules.gpaste = {
     enable = true;
   };
+
+  modules.openshift = {
+    enable = true;
+  };
 }
