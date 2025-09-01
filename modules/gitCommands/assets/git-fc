@@ -15,8 +15,6 @@ if not test -n "$message"
     return 1
 end
 
-echo "$message"
-
 # Parse current branch, and set CC scope
 set current_branch (git rev-parse --abbrev-ref HEAD)
 string match -qr 'feature/(?<cc_scope>.*)' "$current_branch" -- $cc_scope
@@ -33,6 +31,13 @@ set cc_type "feat"
 
 if test -n "$cc_scope"
     set cc_type "$cc_type($cc_scope)" 
+else
+    set default_cc_type $(git config --local user.defaultCcScope)
+    if test -n "$default_cc_type"
+        set cc_type "$cc_type($default_cc_type)"
+    else
+        echo "Conventional commit scope could not be inferred from branch or user.defaultCcScope git config, omitting it"
+    end
 end
 
 set -a git_args -m (string join ": " $cc_type $message)
