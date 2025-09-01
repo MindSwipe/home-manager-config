@@ -1,7 +1,14 @@
 #!/usr/bin/env fish
 # a script to generate conventional commit messages
+argparse 'm/message=' 'a/add' 'd/dry-run' 't/type=!string match -rq \'^(feat|fix)$\' "$_flag_value"' -- $argv
 
-argparse 'm/message=' 'a/add' 'd/dry-run' -- $argv
+# This is required, as else the VS Code extension messes up string escaping and the entire file is a string
+#'
+
+if not test status
+    echo "Failed to parse arguments, status: $status"
+    return $status
+end
 
 # Get message from the argument or use the first positional argument
 if set -ql _flag_m
@@ -26,8 +33,10 @@ if set -ql _flag_a
     set -a git_args "-a"
 end
 
-# TODO make this a param?
 set cc_type "feat"
+if test -n "$_flag_t"
+    set cc_type $_flag_t
+end
 
 if test -n "$cc_scope"
     set cc_type "$cc_type($cc_scope)" 
