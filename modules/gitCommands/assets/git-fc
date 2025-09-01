@@ -1,9 +1,6 @@
 #!/usr/bin/env fish
 # a script to generate conventional commit messages
-argparse 'm/message=' 'a/add' 'd/dry-run' 't/type=!string match -rq \'^(feat|fix)$\' "$_flag_value"' -- $argv
-
-# This is required, as else the VS Code extension messes up string escaping and the entire file is a string
-#'
+argparse 'm/message=' 'a/add' 'd/dry-run' 't/type=' -- $argv
 
 if not test status
     echo "Failed to parse arguments, status: $status"
