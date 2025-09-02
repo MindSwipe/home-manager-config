@@ -13,6 +13,7 @@
     modules.vscode = {
       additionalExtensions = with pkgs; [
         vscode-marketplace.kie-group.vscode-extension-kogito-bundle
+        vscode-marketplace.kie-group.dmn-vscode-extension
       ];
     };
   };
