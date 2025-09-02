@@ -114,6 +114,7 @@ in
     nix.enable = true;
     js.enable = true;
     fish.enable = true;
+    dmn.enable = true;
   };
 
   modules.intellij = {

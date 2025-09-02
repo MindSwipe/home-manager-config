@@ -9,6 +9,7 @@
     ./nix/vscode-nix.nix
     ./javascript/javascript.nix
     ./fish/fish.nix
+    ./dmn/dmn.nix
   ];
 
   options.modules.vscode = {
