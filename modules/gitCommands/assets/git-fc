@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 # a script to generate conventional commit messages
-argparse 'm/message=' 'a/add' 'd/dry-run' 't/type=' -- $argv
+argparse 'm/message=' 'a/add' 'd/dry-run' 't/type=' 'n/no-verify' -- $argv
 
 if not test status
     echo "Failed to parse arguments, status: $status"
@@ -28,6 +28,10 @@ set -l git_args
 
 if set -ql _flag_a
     set -a git_args "-a"
+end
+
+if set -ql _flag_n
+    set -a git_args "--no-verify"
 end
 
 set cc_type "feat"
