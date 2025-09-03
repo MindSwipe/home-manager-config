@@ -53,7 +53,7 @@
         
         userSettings =
           {
-
+            editor.minimap.enabled = false;
           }
           // config.modules.vscode.additionalUserSettings;
       };
