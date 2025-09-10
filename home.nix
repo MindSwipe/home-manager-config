@@ -157,4 +157,8 @@ in
   modules.openshift = {
     enable = true;
   };
+
+  modules.kubectl = {
+    enable = true;
+  };
 }

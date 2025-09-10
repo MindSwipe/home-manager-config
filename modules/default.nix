@@ -12,5 +12,6 @@
     ./bruno/bruno.nix
     ./gpaste/gpaste.nix
     ./openshift/openshift.nix
+    ./kubectl/kubectl.nix
   ];
 }
