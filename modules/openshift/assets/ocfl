@@ -1,0 +1,41 @@
+#!/usr/bin/env fish
+# OpenShift Client Fast Login, no more remembering the server URL manually
+argparse 'e/env=?' 'd/dry-run' -- $argv
+if not test status
+    echo "Failed to parse arguments, status: $status"
+    return $status
+end
+
+set -l known_envs mercury apollo
+set -l known_urls https://api.mercury.ocp.dvbern.ch:6443 https://api.apollo.ocp.dvbern.ch:6443
+
+if set -ql _flag_e
+    set env $_flag_e
+else
+    set env $argv[1]
+end
+
+if not test -n "$env"
+    echo "Environment could not be determined, exiting"
+    return 1
+end
+
+for idx in (seq (count $known_envs))
+    set -l potential_env $known_envs[$idx]
+    if [ "$potential_env" = "$env" ]
+        set -f url $known_urls[$idx]
+    end
+end
+
+if not test -n "$url"
+    echo "No server URL found for env: $env"
+    return 1
+end
+
+set -l user $(whoami)
+
+if set -ql _flag_d
+    echo "dry run: oc login $url -u $user"
+else
+    oc login $url -u $user
+end
