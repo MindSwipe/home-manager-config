@@ -24,6 +24,8 @@
         set fish_greeting
         bind ctrl-h backward-kill-bigword
         bind ctrl-delete kill-bigword
+
+        set --universal tide_right_prompt_items status cmd_duration context nix_shell
       '';
 
       plugins = [
