@@ -10,6 +10,7 @@
     ./javascript/javascript.nix
     ./fish/fish.nix
     ./dmn/dmn.nix
+    ./slint/slint.nix
   ];
 
   options.modules.vscode = {

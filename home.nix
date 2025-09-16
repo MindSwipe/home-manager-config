@@ -115,6 +115,7 @@ in
     js.enable = true;
     fish.enable = true;
     dmn.enable = true;
+    slint.enable = true;
   };
 
   modules.intellij = {
