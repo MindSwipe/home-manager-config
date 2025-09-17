@@ -1,5 +1,10 @@
 # My Home Manager config
 
+Things I want to do here:
+
+* [ ] Make it multi-user/ multi-machine compatible
+* [ ] Integrate it into [my NixOS config](https://github.com/MindSwipe/nix-config) (after that has been reworked)
+
 ## Electron/ SUID Sandbox issues
 On computers with AppArmor it may happen that starting an Electron application/ a binary with the SUID bit fails. This is a known issue, see [#121694](https://github.com/NixOS/nixpkgs/issues/121694). The following is what I used to fix it on Ubuntu 24.04:
 
