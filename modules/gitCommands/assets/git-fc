@@ -1,6 +1,14 @@
 #!/usr/bin/env fish
 # a script to generate conventional commit messages
-argparse 'm/message=' 'a/add' 'd/dry-run' 't/type=' 'n/no-verify' -- $argv
+argparse 'm/message=' 'a/add' 'd/dry-run' 't/type=' 'n/no-verify' 'v/verbose' -- $argv
+
+# Print a string if the verbose flag is set
+set verbose $_flag_v
+function printv -a message
+    if test "$verbose"
+        echo "$message"
+    end
+end
 
 if not test status
     echo "Failed to parse arguments, status: $status"
@@ -46,7 +54,7 @@ else
     if test -n "$default_cc_type"
         set cc_type "$cc_type($default_cc_type)"
     else
-        echo "Conventional commit scope could not be inferred from branch or user.defaultCcScope git config, omitting it"
+        printv "Conventional commit scope could not be inferred from branch or user.defaultCcScope git config, omitting it"
     end
 end
 
