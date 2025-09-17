@@ -11,6 +11,7 @@
     ./fish/fish.nix
     ./dmn/dmn.nix
     ./slint/slint.nix
+    ./rust/rust.nix
   ];
 
   options.modules.vscode = {

@@ -116,6 +116,7 @@ in
     fish.enable = true;
     dmn.enable = true;
     slint.enable = true;
+    rust.enable = true;
   };
 
   modules.intellij = {
