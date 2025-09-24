@@ -117,6 +117,7 @@ in
     dmn.enable = true;
     slint.enable = true;
     rust.enable = true;
+    wgsl.enable = true;
   };
 
   modules.intellij = {

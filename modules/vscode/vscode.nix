@@ -12,6 +12,7 @@
     ./dmn/dmn.nix
     ./slint/slint.nix
     ./rust/rust.nix
+    ./wgsl/wgsl.nix
   ];
 
   options.modules.vscode = {
