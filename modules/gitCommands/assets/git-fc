@@ -58,7 +58,7 @@ else
     end
 end
 
-set -a git_args -m \"$(string join ": " $cc_type $message)\"
+set -a git_args -m $(string join ": " $cc_type $message)
 
 if set -ql _flag_d
     echo "dry run: git commit $git_args"
