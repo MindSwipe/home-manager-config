@@ -43,6 +43,8 @@
   config = lib.mkIf config.modules.vscode.enable {
     programs.vscode = {
       enable = true;
+      mutableExtensionsDir = false;
+
       profiles.default = {
         enableUpdateCheck = false;
         enableExtensionUpdateCheck = false;
