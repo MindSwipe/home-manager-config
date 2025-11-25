@@ -13,6 +13,7 @@
     ./slint/slint.nix
     ./rust/rust.nix
     ./wgsl/wgsl.nix
+    ./vue/vue.nix
   ];
 
   options.modules.vscode = {

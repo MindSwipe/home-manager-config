@@ -118,6 +118,7 @@ in
     slint.enable = true;
     rust.enable = true;
     wgsl.enable = true;
+    vue.enable = true;
   };
 
   modules.intellij = {
