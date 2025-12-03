@@ -20,7 +20,13 @@
 
       settings = {
         terminal.shell = {
-          args = ["new-session" "-A" "-D" "-s" "main"];
+          args = [
+            "new-session"
+            "-A"
+            "-D"
+            "-s"
+            "main"
+          ];
           program = "${pkgs.tmux}/bin/tmux";
         };
 

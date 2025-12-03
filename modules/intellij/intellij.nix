@@ -30,13 +30,15 @@
   };
 
   config = lib.mkIf config.modules.intellij.enable {
-    home.packages = with pkgs; [
-      config.modules.intellij.package
-      maven
-    ]
-    ++ lib.optionals config.modules.intellij.mvnd [
-      mvnd
-    ];
+    home.packages =
+      with pkgs;
+      [
+        config.modules.intellij.package
+        maven
+      ]
+      ++ lib.optionals config.modules.intellij.mvnd [
+        mvnd
+      ];
 
     programs.java = {
       enable = true;

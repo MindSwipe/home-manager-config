@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.modules.vscode.vue = {
     enable = lib.mkEnableOption "Vue support in VS Code";
   };

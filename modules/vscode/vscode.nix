@@ -29,7 +29,7 @@
       ];
     };
 
-    additionalExtensions = lib.mkOption  {
+    additionalExtensions = lib.mkOption {
       default = [ ];
       example = [ ];
       type = lib.types.listOf lib.types.package;
@@ -51,17 +51,17 @@
         enableUpdateCheck = false;
         enableExtensionUpdateCheck = false;
 
-        extensions = with pkgs;
+        extensions =
+          with pkgs;
           [
             vscode-extensions.tomoki1207.pdf
           ]
           ++ config.modules.vscode.additionalExtensions;
-        
-        userSettings =
-          {
-            editor.minimap.enabled = false;
-          }
-          // config.modules.vscode.additionalUserSettings;
+
+        userSettings = {
+          editor.minimap.enabled = false;
+        }
+        // config.modules.vscode.additionalUserSettings;
       };
     };
   };

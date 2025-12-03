@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.modules.vscode.slint = {
     enable = lib.mkEnableOption "Slint support in VS Code";
   };

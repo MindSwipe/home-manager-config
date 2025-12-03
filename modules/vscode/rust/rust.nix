@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.modules.vscode.rust = {
     enable = lib.mkEnableOption "rust support in VS Code";
   };
