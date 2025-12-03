@@ -141,6 +141,7 @@ in
 
   modules.fish = {
     enable = true;
+    sssd.uses = true;
   };
 
   modules.alacritty = {

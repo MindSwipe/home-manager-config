@@ -28,3 +28,6 @@ or
 
 ## OpenGL/ Hardware acceleration
 Use the `config.lib.nixGL.wrap` to wrap any package like `(config.lib.nixGL.wrap pkgs.alacritty)`
+
+## No user exists for UID ...
+This is an issue with using Nix/ Home Manager on a system that uses SSSD to handle authentication. The fix is to manually add `libnss_sss.so.2` to the `LD_PRELOAD` variable.
