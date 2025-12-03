@@ -100,12 +100,12 @@ in
         name = "Juri Furer";
         email = "juri.furer@dvbern.ch";
       };
+    };
 
-      # TODO: Fix this, use the new signing option
-      commit.gpgsign = true;
-      gpg.format = "ssh";
-      gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
-      user.signingkey = "~/.ssh/id_ed25519.pub";
+    signing = {
+      format = "ssh";
+      key = "~/.ssh/id_ed25519.pub";
+      signByDefault = true;
     };
   };
 
