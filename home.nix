@@ -1,4 +1,10 @@
-{ config, pkgs, nixgl, username, ... }:
+{
+  config,
+  pkgs,
+  nixgl,
+  username,
+  ...
+}:
 
 let
   unfree = [
@@ -89,26 +95,28 @@ in
 
   programs.git = {
     enable = true;
-    userName = "Juri Furer";
-    userEmail = "juri.furer@dvbern.ch";
+    settings = {
+      user = {
+        name = "Juri Furer";
+        email = "juri.furer@dvbern.ch";
+      };
 
-    extraConfig = {
       commit.gpgsign = true;
       gpg.format = "ssh";
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
       user.signingkey = "~/.ssh/id_ed25519.pub";
     };
   };
-  
-  nixpkgs.config.allowUnfreePredicate = (pkg:
-    builtins.elem (pkg.pname or (builtins.parseDrvName pkg.name).name) unfree
+
+  nixpkgs.config.allowUnfreePredicate = (
+    pkg: builtins.elem (pkg.pname or (builtins.parseDrvName pkg.name).name) unfree
   );
 
-  nixGL = {
+  targets.genericLinux.nixGL = {
     packages = nixgl.packages;
     defaultWrapper = "mesa";
   };
-  
+
   modules.vscode = {
     enable = true;
     nix.enable = true;
@@ -125,7 +133,7 @@ in
     enable = true;
     mvnd = false;
   };
-  
+
   modules.tmux = {
     enable = true;
   };
