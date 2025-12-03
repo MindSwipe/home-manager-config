@@ -101,6 +101,7 @@ in
         email = "juri.furer@dvbern.ch";
       };
 
+      # TODO: Fix this, use the new signing option
       commit.gpgsign = true;
       gpg.format = "ssh";
       gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
