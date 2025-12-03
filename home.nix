@@ -175,4 +175,8 @@ in
   modules.kubectl = {
     enable = true;
   };
+
+  modules.treefmt = {
+    enable = true;
+  };
 }

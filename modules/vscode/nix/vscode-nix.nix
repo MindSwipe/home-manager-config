@@ -11,7 +11,6 @@
 
   config = lib.mkIf config.modules.vscode.nix.enable {
     home.packages = with pkgs; [
-      nixfmt-rfc-style
       nixd
       deadnix
     ];
@@ -34,5 +33,14 @@
         };
       };
     };
+
+    modules.treefmt.additionalFormatters = [
+      {
+        package = pkgs.nixfmt-rfc-style;
+        name = "nixfmt-rfc-style";
+        command = "nixfmt";
+        includes = [ "*.nix" ];
+      }
+    ];
   };
 }

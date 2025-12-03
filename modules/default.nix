@@ -13,5 +13,6 @@
     ./gpaste/gpaste.nix
     ./openshift/openshift.nix
     ./kubectl/kubectl.nix
+    ./treefmt/treefmt.nix
   ];
 }
