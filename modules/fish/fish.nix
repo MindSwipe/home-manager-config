@@ -22,6 +22,15 @@
         description = "The path to the libnss_sss library";
       };
     };
+
+    additionalShellAliases = lib.mkOption {
+      default = { };
+      example = {
+        g = "git";
+      };
+      type = lib.types.attrs;
+      description = "Attribute set of additional shell aliases, maps to https://nix-community.github.io/home-manager/options.xhtml#opt-programs.fish.shellAliases";
+    };
   };
 
   config =
@@ -49,6 +58,8 @@
         + lib.optionalString cfg.sssd.uses ''
           set -gx LD_PRELOAD "$LD_PRELOAD ${cfg.sssd.libnssSssPath}" 
         '';
+
+        shellAliases = { } // cfg.additionalShellAliases;
 
         plugins = [
           {
