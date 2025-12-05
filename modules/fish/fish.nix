@@ -22,7 +22,6 @@
         description = "The path to the libnss_sss library";
       };
     };
-    sssdLogin = false;
   };
 
   config =
