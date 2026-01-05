@@ -103,7 +103,7 @@
       ++ formatters;
 
       modules.fish.additionalShellAliases = lib.mkIf config.modules.fish.enable {
-        treefmt-init = "echo ${fullTOML} > ./treefmt.toml";
+        treefmt-init = "echo '${fullTOML}' > ./treefmt.toml";
         treefmt-global = "treefmt --tree-root . --config-file ~/.config/treefmt/global.toml";
       };
 
