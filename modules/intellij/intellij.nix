@@ -8,8 +8,8 @@
   options.modules.intellij = {
     enable = lib.mkEnableOption "IntelliJ";
     package = lib.mkOption {
-      default = pkgs.jetbrains.idea-ultimate;
-      example = pkgs.jetbrains.idea-ultimate;
+      default = pkgs.jetbrains.idea;
+      example = pkgs.jetbrains.idea;
       type = lib.types.package;
       description = "Override the IntelliJ package to use";
     };

@@ -9,7 +9,7 @@
 let
   unfree = [
     "vscode"
-    "idea-ultimate"
+    "idea"
   ];
 in
 {
