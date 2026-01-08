@@ -34,6 +34,24 @@
         overlays = [
           nixgl.overlay
           nix-vscode-extensions.overlays.default
+
+          (final: prev: {
+            my-alacritty = prev.alacritty.overrideAttrs (oldAttrs: rec {
+              version = "0.17.0-dev";
+
+              src = pkgs.fetchFromGitHub {
+                owner = "MindSwipe";
+                repo = "alacritty";
+                rev = "93591bcee2f1c0a2d17abdfd59bba59812b6e2e0";
+                hash = "sha256-zaZ0eY/VBX169BCoh/TODdAEzet0aPAg8jc1oST6Eqk=";
+              };
+
+              cargoDeps = final.rustPlatform.fetchCargoVendor {
+                inherit src;
+                hash = "sha256-2ikO7dyzIG9GcUrLeaKpn1ilLUldhiXuvYGo/WpUW3Q=";
+              };
+            });
+          })
         ];
       };
       username = "fuju";

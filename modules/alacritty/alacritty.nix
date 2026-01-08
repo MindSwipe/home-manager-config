@@ -11,12 +11,12 @@
 
   config = lib.mkIf config.modules.alacritty.enable {
     home.packages = [
-      (config.lib.nixGL.wrap pkgs.alacritty)
+      (config.lib.nixGL.wrap pkgs.my-alacritty)
     ];
 
     programs.alacritty = {
       enable = true;
-      package = (config.lib.nixGL.wrap pkgs.alacritty);
+      package = (config.lib.nixGL.wrap pkgs.my-alacritty);
 
       settings = {
         terminal.shell = {
@@ -43,6 +43,10 @@
             family = "MesloLGS NF";
             style = "Italic";
           };
+        };
+
+        window = {
+          resize_increments = true;
         };
       };
     };
