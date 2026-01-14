@@ -22,8 +22,8 @@
     };
 
     jdk = lib.mkOption {
-      default = pkgs.jdk21;
-      example = pkgs.jdk21;
+      default = pkgs.openjdk8;
+      example = pkgs.openjdk8;
       type = lib.types.package;
       description = "Which JDK to install";
     };
