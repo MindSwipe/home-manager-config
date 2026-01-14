@@ -16,6 +16,11 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    wildfly-flake = {
+      url = "path:./flakes/wildfly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -24,6 +29,7 @@
       home-manager,
       nixgl,
       nix-vscode-extensions,
+      wildfly-flake,
       ...
     }:
     let
@@ -52,8 +58,13 @@
               };
             });
           })
+
+          (final: prev: {
+            wildfly-bin = wildfly-flake.packages.${system}.wildfly;
+          })
         ];
       };
+
       username = "fuju";
     in
     {

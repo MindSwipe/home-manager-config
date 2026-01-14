@@ -133,6 +133,7 @@ in
   modules.intellij = {
     enable = true;
     mvnd = false;
+    wildfly.enable = true;
   };
 
   modules.tmux = {

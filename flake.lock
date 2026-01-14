@@ -101,7 +101,8 @@
         "home-manager": "home-manager",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixgl": "nixgl",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "wildfly-flake": "wildfly-flake"
       }
     },
     "systems": {
@@ -118,6 +119,22 @@
         "repo": "default",
         "type": "github"
       }
+    },
+    "wildfly-flake": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "path": "./flakes/wildfly",
+        "type": "path"
+      },
+      "original": {
+        "path": "./flakes/wildfly",
+        "type": "path"
+      },
+      "parent": []
     }
   },
   "root": "root",
