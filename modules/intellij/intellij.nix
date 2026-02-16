@@ -27,16 +27,6 @@
       type = lib.types.package;
       description = "Which JDK to install";
     };
-
-    wildfly = {
-      enable = lib.mkEnableOption "Wildfly installation";
-      package = lib.mkOption {
-        default = pkgs.wildfly-bin;
-        example = pkgs.wildfly-bin;
-        type = lib.types.package;
-        description = "The Nix package containing WildFly";
-      };
-    };
   };
 
   config = lib.mkIf config.modules.intellij.enable {
@@ -48,9 +38,6 @@
       ]
       ++ lib.optionals config.modules.intellij.mvnd [
         mvnd
-      ]
-      ++ lib.optionals config.modules.intellij.wildfly.enable [
-        config.modules.intellij.wildfly.package
       ];
 
     programs.java = {
