@@ -13,5 +13,9 @@
       enable = true;
       enableGitIntegration = true;
     };
+
+    modules.git.additionalGitSettings = {
+      merge.conflictStyle = "zdiff3";
+    };
   };
 }

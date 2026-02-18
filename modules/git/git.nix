@@ -47,6 +47,11 @@
       type = lib.types.nullOr lib.types.str;
       description = "The string path to the ssh id file used to sign commits";
     };
+
+    additionalGitSettings = lib.mkOption {
+      default = { };
+      description = "Additional settings to map into the global git config file";
+    };
   };
 
   config =
@@ -87,7 +92,8 @@
           pull.rebase = true;
 
           gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
-        };
+        }
+        // cfg.additionalGitSettings;
 
         signing = {
           format = "ssh";
