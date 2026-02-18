@@ -100,80 +100,82 @@ in
     defaultWrapper = "mesa";
   };
 
-  modules.vscode = {
-    enable = true;
-    nix.enable = true;
-    js.enable = true;
-    fish.enable = true;
-    dmn.enable = true;
-    slint.enable = true;
-    rust.enable = true;
-    wgsl.enable = true;
-    vue.enable = true;
-  };
-
-  modules.intellij = {
-    enable = true;
-    mvnd = false;
-  };
-
-  modules.tmux = {
-    enable = true;
-  };
-
-  modules.fish = {
-    enable = true;
-    sssd.uses = true;
-  };
-
-  modules.alacritty = {
-    enable = true;
-  };
-
-  modules.devenv = {
-    enable = true;
-  };
-
-  modules.gitCommands = {
-    enable = true;
-  };
-
-  modules.geany = {
-    enable = true;
-  };
-
-  modules.bruno = {
-    enable = true;
-  };
-
-  modules.gpaste = {
-    enable = true;
-  };
-
-  modules.openshift = {
-    enable = true;
-  };
-
-  modules.kubectl = {
-    enable = true;
-  };
-
-  modules.treefmt = {
-    enable = true;
-  };
-
-  modules.delta = {
-    enable = true;
-  };
-
-  modules.git = {
-    enable = true;
-
-    user = {
-      name = "Juri Furer";
-      email = "juri.furer@dvbern.ch";
+  modules = {
+    vscode = {
+      enable = true;
+      nix.enable = true;
+      js.enable = true;
+      fish.enable = true;
+      dmn.enable = true;
+      slint.enable = true;
+      rust.enable = true;
+      wgsl.enable = true;
+      vue.enable = true;
     };
 
-    sshKey = "~/.ssh/id_ed25519.pub";
+    intellij = {
+      enable = true;
+      mvnd = false;
+    };
+
+    tmux = {
+      enable = true;
+    };
+
+    fish = {
+      enable = true;
+      sssd.uses = true;
+    };
+
+    alacritty = {
+      enable = true;
+    };
+
+    devenv = {
+      enable = true;
+    };
+
+    gitCommands = {
+      enable = true;
+    };
+
+    geany = {
+      enable = true;
+    };
+
+    bruno = {
+      enable = true;
+    };
+
+    gpaste = {
+      enable = true;
+    };
+
+    openshift = {
+      enable = true;
+    };
+
+    kubectl = {
+      enable = true;
+    };
+
+    treefmt = {
+      enable = true;
+    };
+
+    delta = {
+      enable = true;
+    };
+
+    git = {
+      enable = true;
+
+      user = {
+        name = "Juri Furer";
+        email = "juri.furer@dvbern.ch";
+      };
+
+      sshKey = "~/.ssh/id_ed25519.pub";
+    };
   };
 }
