@@ -16,6 +16,7 @@
 
     modules.git.additionalGitSettings = {
       merge.conflictStyle = "zdiff3";
+      delta.navigate = true;
     };
   };
 }
