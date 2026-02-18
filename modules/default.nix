@@ -15,5 +15,6 @@
     ./kubectl/kubectl.nix
     ./treefmt/treefmt.nix
     ./delta/delta.nix
+    ./git/git.nix
   ];
 }

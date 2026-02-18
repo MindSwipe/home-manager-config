@@ -25,6 +25,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       home-manager,
       nixgl,
@@ -78,7 +79,7 @@
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
         extraSpecialArgs = {
-          inherit nixgl username;
+          inherit nixgl username self;
         };
       };
     };

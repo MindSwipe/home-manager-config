@@ -91,24 +91,6 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.file.".ssh/allowed_signers".source = ./assets/allowed_signers;
-
-  programs.git = {
-    enable = true;
-    settings = {
-      user = {
-        name = "Juri Furer";
-        email = "juri.furer@dvbern.ch";
-      };
-    };
-
-    signing = {
-      format = "ssh";
-      key = "~/.ssh/id_ed25519.pub";
-      signByDefault = true;
-    };
-  };
-
   nixpkgs.config.allowUnfreePredicate = (
     pkg: builtins.elem (pkg.pname or (builtins.parseDrvName pkg.name).name) unfree
   );
@@ -182,5 +164,16 @@ in
 
   modules.delta = {
     enable = true;
+  };
+
+  modules.git = {
+    enable = true;
+
+    user = {
+      name = "Juri Furer";
+      email = "juri.furer@dvbern.ch";
+    };
+
+    sshKey = "~/.ssh/id_ed25519.pub";
   };
 }
