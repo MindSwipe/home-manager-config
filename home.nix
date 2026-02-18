@@ -179,4 +179,8 @@ in
   modules.treefmt = {
     enable = true;
   };
+
+  modules.delta = {
+    enable = true;
+  };
 }

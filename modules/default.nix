@@ -14,5 +14,6 @@
     ./openshift/openshift.nix
     ./kubectl/kubectl.nix
     ./treefmt/treefmt.nix
+    ./delta/delta.nix
   ];
 }
