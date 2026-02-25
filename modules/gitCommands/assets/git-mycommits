@@ -1,0 +1,37 @@
+#!/usr/bin/env fish
+# a script to log the current user's commits on a given branch including date information
+argparse 'b/branch=' 'd/dry-run' 'v/verbose' -- $argv
+
+set verbose $_flag_verbose
+function printv -a message
+    if test "$verbose"
+        echo "$message"
+    end
+end
+
+if not test status
+    echo "Failed to parse arguments, status: $status"
+    return $status
+end
+
+if set -ql _flag_branch
+    set branch $flag_branch
+else
+    set branch $argv[1]
+end
+
+if not test -n "$branch"
+    echo "branch was not set but is required, pass the -b or --branch argument or positionally set it as the first argument"
+    return 1
+end
+
+printv "branch to check is '$branch'"
+
+set command "git rev-list --branches $branch --author=\"$(git config user.name)\" | git log --stdin --no-walk --pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short"
+
+if set -ql _flag_d
+    echo "dry run: $command"
+else
+    printv "running: $command"
+    eval $command
+end
