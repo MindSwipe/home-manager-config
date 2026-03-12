@@ -16,5 +16,6 @@
     ./treefmt/treefmt.nix
     ./delta/delta.nix
     ./git/git.nix
+    ./rider/rider.nix
   ];
 }

@@ -10,6 +10,7 @@ let
   unfree = [
     "vscode"
     "idea"
+    "rider"
   ];
 in
 {
@@ -176,6 +177,10 @@ in
       };
 
       sshKey = "~/.ssh/id_ed25519.pub";
+    };
+
+    rider = {
+      enable = true;
     };
   };
 }
