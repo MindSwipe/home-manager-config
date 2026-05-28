@@ -22,8 +22,8 @@
     };
 
     jdk = lib.mkOption {
-      default = pkgs.openjdk8;
-      example = pkgs.openjdk8;
+      default = pkgs.temurin-bin-17;
+      example = pkgs.temurin-bin-17;
       type = lib.types.package;
       description = "Which JDK to install";
     };

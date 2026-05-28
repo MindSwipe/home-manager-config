@@ -11,7 +11,7 @@
 
   config = lib.mkIf config.modules.vscode.js.enable {
     home.packages = with pkgs; [
-      nodejs
+      nodejs_24
     ];
 
     modules.vscode = {
