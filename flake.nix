@@ -25,7 +25,6 @@
       home-manager,
       nixgl,
       nix-vscode-extensions,
-      wildfly-flake,
       ...
     }:
     let
@@ -53,10 +52,6 @@
                 hash = "sha256-2ikO7dyzIG9GcUrLeaKpn1ilLUldhiXuvYGo/WpUW3Q=";
               };
             });
-          })
-
-          (final: prev: {
-            wildfly-bin = wildfly-flake.packages.${system}.wildfly;
           })
         ];
       };
