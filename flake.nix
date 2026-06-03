@@ -16,11 +16,6 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    wildfly-flake = {
-      url = "path:./flakes/wildfly";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
