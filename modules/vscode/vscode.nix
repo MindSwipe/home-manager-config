@@ -61,7 +61,6 @@
         userSettings = {
           editor.minimap.enabled = false;
           workbench.editor.wrapTabs = true;
-          workbench.editor.showTabs = "none";
         }
         // config.modules.vscode.additionalUserSettings;
       };
