@@ -36,8 +36,8 @@
 
     modules.treefmt.additionalFormatters = [
       {
-        package = pkgs.nixfmt-rfc-style;
-        name = "nixfmt-rfc-style";
+        package = pkgs.nixfmt;
+        name = "nixfmt";
         command = "nixfmt";
         includes = [ "*.nix" ];
       }
