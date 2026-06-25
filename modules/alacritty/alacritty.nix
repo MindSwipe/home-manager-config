@@ -17,12 +17,12 @@
     in
     lib.mkIf cfg.enable {
       home.packages = [
-        (config.lib.nixGL.wrap pkgs.my-alacritty)
+        (config.lib.nixGL.wrap pkgs.alacritty)
       ];
 
       programs.alacritty = {
         enable = true;
-        package = (config.lib.nixGL.wrap pkgs.my-alacritty);
+        package = (config.lib.nixGL.wrap pkgs.alacritty);
 
         settings = {
           terminal.shell = {
