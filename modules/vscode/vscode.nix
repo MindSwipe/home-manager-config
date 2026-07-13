@@ -60,7 +60,11 @@
 
         userSettings = {
           editor.minimap.enabled = false;
-          workbench.editor.wrapTabs = true;
+
+          workbench = {
+            editor.wrapTabs = true;
+            secondarySideBar.defaultVisibility = "hidden";
+          };
         }
         // config.modules.vscode.additionalUserSettings;
       };
