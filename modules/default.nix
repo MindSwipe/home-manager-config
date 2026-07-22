@@ -17,5 +17,6 @@
     ./delta/delta.nix
     ./git/git.nix
     ./rider/rider.nix
+    ./python/python.nix
   ];
 }

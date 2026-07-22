@@ -111,6 +111,7 @@ in
       rust.enable = true;
       wgsl.enable = true;
       vue.enable = true;
+      ansible.enable = true;
     };
 
     intellij = {
@@ -179,6 +180,10 @@ in
     };
 
     rider = {
+      enable = true;
+    };
+
+    python = {
       enable = true;
     };
   };

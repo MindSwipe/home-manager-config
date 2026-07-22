@@ -14,6 +14,7 @@
     ./rust/rust.nix
     ./wgsl/wgsl.nix
     ./vue/vue.nix
+    ./ansible/ansible.nix
   ];
 
   options.modules.vscode = {
