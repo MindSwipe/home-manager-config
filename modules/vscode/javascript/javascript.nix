@@ -21,7 +21,6 @@
         vscode-extensions.bradlc.vscode-tailwindcss
         vscode-extensions.redhat.vscode-yaml
         vscode-extensions.angular.ng-template
-        vscode-marketplace."42crunch".vscode-openapi
       ];
 
       additionalUserSettings = {
