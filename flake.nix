@@ -8,10 +8,6 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixgl = {
-      url = "github:nix-community/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,7 +19,6 @@
       self,
       nixpkgs,
       home-manager,
-      nixgl,
       nix-vscode-extensions,
       ...
     }:
@@ -33,7 +28,6 @@
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
-          nixgl.overlay
           nix-vscode-extensions.overlays.default
         ];
       };
@@ -51,7 +45,7 @@
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
         extraSpecialArgs = {
-          inherit nixgl username self;
+          inherit username self;
         };
       };
     };

@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  nixgl,
   username,
   ...
 }:
@@ -11,6 +10,7 @@ let
     "vscode"
     "idea"
     "rider"
+    "nvidia"
   ];
 in
 {
@@ -95,9 +95,18 @@ in
     pkg: builtins.elem (pkg.pname or (builtins.parseDrvName pkg.name).name) unfree
   );
 
-  targets.genericLinux.nixGL = {
-    packages = nixgl.packages;
-    defaultWrapper = "mesa";
+  nixpkgs.config.nvidia.acceptLicense = true;
+
+  targets.genericLinux = {
+    enable = true;
+    gpu = {
+      enable = true;
+      nvidia = {
+        enable = true;
+        version = "595.84";
+        sha256 = "sha256-mcQE5SExvye8ptoCaNzOPr7cenOrF0BxqZXPGmxeugY=";
+      };
+    };
   };
 
   modules = {

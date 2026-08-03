@@ -27,7 +27,20 @@ or
     sudo systemctl reload apparmor.service
 
 ## OpenGL/ Hardware acceleration
-Use the `config.lib.nixGL.wrap` to wrap any package like `(config.lib.nixGL.wrap pkgs.alacritty)`
+Check the [Home Manager documentatiion](https://home-manager.dev/manual/25.11/index.xhtml#sec-usage-gpu-sudo).
+
+On every `home-manager switch` invocation check the console output for something like
+
+```txt
+Activating checkExistingGpuDrivers
+GPU drivers require an update, run
+  sudo /nix/store/HASH-non-nixos-gpu/bin/non-nixos-gpu-setup
+```
+
+and run that `sudo` command, after that it *should* just work <sup>tm</sup>
+
+### Nvidia
+Using the Nvidia driver is a little involved, use `nvidia-smi` to check the exact driver version and follow the Home Manager documentation to install it. Be careful when updating the host system as that may change the exact Nvidia driver version being used.
 
 ## No user exists for UID ...
 This is an issue with using Nix/ Home Manager on a system that uses SSSD to handle authentication. The fix is to manually add `libnss_sss.so.2` to the `LD_PRELOAD` variable.
