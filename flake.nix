@@ -12,6 +12,16 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -20,6 +30,8 @@
       nixpkgs,
       home-manager,
       nix-vscode-extensions,
+      dms,
+      niri,
       ...
     }:
     let
@@ -45,7 +57,12 @@
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
         extraSpecialArgs = {
-          inherit username self;
+          inherit
+            username
+            self
+            dms
+            niri
+            ;
         };
       };
     };

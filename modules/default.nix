@@ -18,5 +18,6 @@
     ./git/git.nix
     ./rider/rider.nix
     ./python/python.nix
+    ./niri/niri.nix
   ];
 }

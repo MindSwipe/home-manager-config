@@ -195,5 +195,9 @@ in
     python = {
       enable = true;
     };
+
+    niri = {
+      enable = true;
+    };
   };
 }
