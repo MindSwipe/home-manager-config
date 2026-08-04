@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "danksearch": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784433272,
+        "narHash": "sha256-5Gz3pC/rcn8LLwzLZZhrpPMqY+PDdUzoFtXV3uWoitg=",
+        "owner": "AvengeMedia",
+        "repo": "danksearch",
+        "rev": "4b4905e2ef3454230fb648d2139f3139b742b0eb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "danksearch",
+        "type": "github"
+      }
+    },
     "dms": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -171,6 +191,7 @@
     },
     "root": {
       "inputs": {
+        "danksearch": "danksearch",
         "dms": "dms",
         "home-manager": "home-manager",
         "niri": "niri",

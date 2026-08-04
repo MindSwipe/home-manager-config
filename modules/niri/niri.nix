@@ -4,6 +4,7 @@
   pkgs,
   niri,
   dms,
+  danksearch,
   ...
 }:
 {
@@ -11,6 +12,8 @@
     dms.homeModules.dank-material-shell
     dms.homeModules.niri
     niri.homeModules.niri
+
+    danksearch.homeModules.dsearch
   ];
 
   options.modules.niri = {
@@ -29,6 +32,13 @@
       type = lib.types.str;
       description = "Absolute path to the system installed cmp binary";
     };
+
+    systemctlPath = lib.mkOption {
+      default = "/usr/bin/systemctl";
+      example = "/usr/bin/systemctl";
+      type = lib.types.str;
+      description = "Absolute path to the system installed systemctl binary";
+    };
   };
 
   config =
@@ -41,7 +51,7 @@
           [Desktop Entry]
           Name=niri
           Comment=Scrollable-tiling Wayland compositor
-          Exec=${lib.getExe niriPackage}
+          Exec=${niriPackage}/bin/niri-session
           Type=Application
           DesktopNames=niri
         ''
@@ -80,6 +90,8 @@
         };
       };
 
+      programs.dsearch.enable = true;
+
       home.activation.installNiriSession = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         desktopFile="${(niriDesktopEntry config.programs.niri.package)}"
         targetFile="/usr/share/wayland-sessions/niri.desktop"
@@ -87,6 +99,21 @@
         if ! ${cfg.cmpPath} --silent "$desktopFile" "$targetFile" 2>/dev/null; then
           run ${cfg.sudoPath} install -Dm644 "$desktopFile" "$targetFile"
         fi
+      '';
+
+      home.activation.linkNiriSystemdUnits = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        mkdir -p "$HOME/.config/systemd/user"
+
+        for unit in niri.service niri-shutdown.target; do
+          src="${config.programs.niri.package}/lib/systemd/user/$unit"
+          dest="$HOME/.config/systemd/user/$unit"
+
+          if [ -e "$src" ] && [ "$(readlink -f "$dest" 2>/dev/null)" != "$src" ]; then
+            run ln -sfn "$src" "$dest"
+          fi
+        done
+
+        run ${cfg.systemctlPath} --user daemon-reload
       '';
     };
 }
