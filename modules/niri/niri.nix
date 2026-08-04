@@ -61,6 +61,19 @@
       programs.niri = {
         enable = true;
         package = pkgs.niri;
+
+        settings = {
+          input = {
+            mouse = {
+              accel-profile = "flat";
+            };
+
+            keyboard.xkb = {
+              layout = "ch";
+              variant = "de_nodeadkeys";
+            };
+          };
+        };
       };
 
       programs.dank-material-shell = {
