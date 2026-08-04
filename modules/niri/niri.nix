@@ -60,6 +60,7 @@
     lib.mkIf cfg.enable {
       programs.niri = {
         enable = true;
+        # Use the nixpkgs bundled Niri for a newer version
         package = pkgs.niri;
 
         settings = {
@@ -72,6 +73,14 @@
               layout = "ch";
               variant = "de_nodeadkeys";
             };
+          };
+
+          binds = with config.lib.niri.actions; {
+            "Mod+Shift+KP_Add".action = set-column-width "+5%";
+            "Mod+Shift+KP_Subtract".action = set-column-width "-5%";
+
+            "Mod+WheelScrollRight".action = focus-column-right;
+            "Mod+WheelScrollLeft".action = focus-column-left;
           };
         };
       };
