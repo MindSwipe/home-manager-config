@@ -198,6 +198,7 @@ in
 
     niri = {
       enable = true;
+      manualSystemLevelConfiguration = true;
     };
   };
 }

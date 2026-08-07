@@ -19,6 +19,8 @@
   options.modules.niri = {
     enable = lib.mkEnableOption "Niri WM";
 
+    manualSystemLevelConfiguration = lib.mkEnableOption "manually integrate Niri and Dank Material Shell into a non-NixOS system";
+
     sudoPath = lib.mkOption {
       default = "/usr/bin/sudo";
       example = "/usr/bin/suod";
@@ -58,6 +60,10 @@
       );
     in
     lib.mkIf cfg.enable {
+      home.packages = [
+        pkgs.xwayland-satellite
+      ];
+
       programs.niri = {
         enable = true;
         # Use the nixpkgs bundled Niri for a newer version
@@ -114,28 +120,32 @@
 
       programs.dsearch.enable = true;
 
-      home.activation.installNiriSession = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        desktopFile="${(niriDesktopEntry config.programs.niri.package)}"
-        targetFile="/usr/share/wayland-sessions/niri.desktop"
+      home.activation.installNiriSession = lib.mkIf cfg.manualSystemLevelConfiguration (
+        lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          desktopFile="${(niriDesktopEntry config.programs.niri.package)}"
+          targetFile="/usr/share/wayland-sessions/niri.desktop"
 
-        if ! ${cfg.cmpPath} --silent "$desktopFile" "$targetFile" 2>/dev/null; then
-          run ${cfg.sudoPath} install -Dm644 "$desktopFile" "$targetFile"
-        fi
-      '';
-
-      home.activation.linkNiriSystemdUnits = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        mkdir -p "$HOME/.config/systemd/user"
-
-        for unit in niri.service niri-shutdown.target; do
-          src="${config.programs.niri.package}/lib/systemd/user/$unit"
-          dest="$HOME/.config/systemd/user/$unit"
-
-          if [ -e "$src" ] && [ "$(readlink -f "$dest" 2>/dev/null)" != "$src" ]; then
-            run ln -sfn "$src" "$dest"
+          if ! ${cfg.cmpPath} --silent "$desktopFile" "$targetFile" 2>/dev/null; then
+            run ${cfg.sudoPath} install -Dm644 "$desktopFile" "$targetFile"
           fi
-        done
+        ''
+      );
 
-        run ${cfg.systemctlPath} --user daemon-reload
-      '';
+      home.activation.linkNiriSystemdUnits = lib.mkIf cfg.manualSystemLevelConfiguration (
+        lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          mkdir -p "$HOME/.config/systemd/user"
+
+          for unit in niri.service niri-shutdown.target; do
+            src="${config.programs.niri.package}/lib/systemd/user/$unit"
+            dest="$HOME/.config/systemd/user/$unit"
+
+            if [ -e "$src" ] && [ "$(readlink -f "$dest" 2>/dev/null)" != "$src" ]; then
+              run ln -sfn "$src" "$dest"
+            fi
+          done
+
+          run ${cfg.systemctlPath} --user daemon-reload
+        ''
+      );
     };
 }

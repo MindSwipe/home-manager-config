@@ -45,9 +45,5 @@ Using the Nvidia driver is a little involved, use `nvidia-smi` to check the exac
 ## No user exists for UID ...
 This is an issue with using Nix/ Home Manager on a system that uses SSSD to handle authentication. The fix is to manually add `libnss_sss.so.2` to the `LD_PRELOAD` variable.
 
-## Niri
-For Niri you must allow whatever user is running `home-manager switch` to write to `/usr/share/wayland-sessions`, to do this, add a narrowly-scoped passwordless sudo rule, e.g. to `/etc/sudoers.d/niri-session-install`:
-
-```
-your_username ALL=(root) NOPASSWD: /run/current-system/sw/bin/install -Dm644 * /usr/share/wayland-sessions/niri.desktop
-```
+## Niri and Dank Material Shell (DMS) on non-NixOS machines
+Enable the `manualSystemLevelConfiguration` configuration to manually integrate Niri and DMS into a system. This may require the user to type their sudo password.
