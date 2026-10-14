@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+complete -c git-feature -e
+complete -c ./git-feature -e
+complete -c git-feature -s p -l project -x -a "(git-feature --project-completions)"

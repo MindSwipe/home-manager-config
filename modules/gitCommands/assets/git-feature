@@ -1,28 +1,108 @@
-#!/bin/bash
-PROJECT_PREFIX=$(git config get user.projectPrefix)
+#!/usr/bin/env fish
+function get_prefixes
+    set defaultPrefix (git config get user.projectPrefix)
 
-if [ -z "${PROJECT_PREFIX}" ]; then
-    echo "git config user.projectPrefix must be set"
-    exit 1
-fi
+    set choices (git config get user.alternativePrefixes | string split ,)
+    set -p choices $defaultPrefix
 
-if [ -z "${1}" ]; then
-    echo "First argument must be set"
-    exit 1
-fi
+    for choice in $choices
+        echo $choice
+    end
+end
 
-TARGET_BRANCH="feature/${PROJECT_PREFIX}-${1}"
-
-if [ `git rev-parse --verify $TARGET_BRANCH 2>/dev/null` ]; then
-    echo "$TARGET_BRANCH exists locally, switching"
-    git switch $TARGET_BRANCH
+if contains -- --project-completions $argv
+    get_prefixes
     exit 0
-fi
+end
 
-git ls-remote --exit-code --heads origin refs/heads/${TARGET_BRANCH}
-if [ $? -ne 0 ]; then
-    git switch --create $TARGET_BRANCH
+argparse 'p/project=' 'n/no-default' 'i/issue-number=' 'd/dry-run' 'v/verbose' -- $argv
+or return
+
+set verbose $_flag_v
+function printv -a message
+    if test "$verbose"
+        echo "$message"
+    end
+end
+
+function print
+    argparse 'p/print-dry' -- $argv
+    or return
+
+    set message $argv[1]
+    if set -ql _flag_p
+        echo "[DRY RUN]: $message"
+    else
+        echo "$message"
+    end
+end
+
+if set -ql _flag_p
+    set project $_flag_p
 else
-    git fetch
-    git switch -c $TARGET_BRANCH origin/$TARGET_BRANCH
-fi
+    set prefixes (get_prefixes)
+    if set -ql _flag_n
+        if type -q fzf
+            printv "not selecting default, offering user a select promp"
+            set project (printf '%s\n' $prefixes | fzf --prompt="Pick a project prefix: ")
+        else
+            print "required dependency 'fzf' not installed" >&2
+            exit 1
+        end
+    else
+        printv "setting default project as prefix"
+        set project $prefixes[1]
+    end
+end
+
+printv "project set to: $project"
+if not test "$project"
+    print "project prefix could not be set" >&2
+    exit 1
+end
+
+if set -ql _flag_i
+    set issue $_flag_i
+else
+    if test "$argv[1]"
+        set issue $argv[1]
+    else
+        print "issue number must be passed as flag or first parameter"
+        exit 1
+    end
+end
+
+printv "issue set to: $issue"
+
+set target_branch "feature/$project-$issue"
+printv "target branch set to: $target_branch"
+
+git rev-parse --verify $target_branch 2>/dev/null
+set code $status
+
+if test "$code" -eq 0
+    print "$target_branch exists locally, switching"
+    if set -ql _flag_d
+        print -p "git switch $target_branch"
+    else
+        git switch $target_branch
+    end
+end
+
+git ls-remote --exit-code --heads origin "refs/heads/$target_branch" 2>/dev/null
+set code $status
+
+set command
+if test "$code" -ne 0
+    print "branch does not exist on remote, creating a new local one"
+    set command git switch $target_branch
+else
+    print "branch exists on remote, switching and tracking it"
+    set command git fetch && git switch -c $target_branch origin/$target_branch
+end
+
+if set -ql _flag_d
+    print -p "$command"
+else
+    eval $command
+end
