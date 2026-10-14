@@ -86,6 +86,7 @@ if test "$code" -eq 0
         print -p "git switch $target_branch"
     else
         git switch $target_branch
+        exit 0
     end
 end
 
@@ -95,7 +96,7 @@ set code $status
 set command
 if test "$code" -ne 0
     print "branch does not exist on remote, creating a new local one"
-    set command git switch $target_branch
+    set command git switch --create $target_branch
 else
     print "branch exists on remote, switching and tracking it"
     set command git fetch && git switch -c $target_branch origin/$target_branch
