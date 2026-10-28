@@ -2,7 +2,7 @@
 {
   imports = [
     ./vscode/vscode.nix
-    ./intellij/intellij.nix
+    ./java/java.nix
     ./tmux/tmux.nix
     ./fish/fish.nix
     ./alacritty/alacritty.nix

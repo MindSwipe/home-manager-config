@@ -123,7 +123,7 @@ in
       ansible.enable = true;
     };
 
-    intellij = {
+    java = {
       enable = true;
       mvnd = false;
     };
